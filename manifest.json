@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "条形码和二维码生成器",
+  "version": "2.0.0",
+  "description": "本地生成条形码和二维码，支持多种格式，无需网络连接",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "条形码和二维码生成器",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "permissions": []
+}
