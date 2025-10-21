@@ -8,123 +8,237 @@
 </head>
 <body>
   <div class="container">
-    <h1>📊 条形码和二维码生成器</h1>
+    <!-- 头部 -->
+    <div class="header">
+      <h1>📊 码生成器</h1>
+      <p class="subtitle">本地生成 · 安全快捷</p>
+    </div>
     
-    <!-- 类型选择标签页 -->
+    <!-- 标签页导航 -->
     <div class="tabs">
-      <button class="tab-btn active" data-tab="barcode">📊 条形码</button>
-      <button class="tab-btn" data-tab="qrcode">🔲 二维码</button>
+      <button class="tab-btn active" data-tab="barcode">
+        <span class="tab-icon">📊</span>
+        <span class="tab-text">条形码</span>
+      </button>
+      <button class="tab-btn" data-tab="qrcode">
+        <span class="tab-icon">🔲</span>
+        <span class="tab-text">二维码</span>
+      </button>
     </div>
 
     <!-- 条形码面板 -->
     <div id="barcode-panel" class="tab-panel active">
-      <div class="form-group">
-        <label for="barcodeText">输入内容：</label>
-        <input type="text" id="barcodeText" placeholder="请输入要生成条形码的内容" value="123456789012">
-      </div>
+      <div class="panel-content">
+        <!-- 输入区域 -->
+        <div class="input-section">
+          <div class="form-group">
+            <label for="barcodeText">
+              <span class="label-icon">✏️</span>
+              输入内容
+            </label>
+            <input type="text" id="barcodeText" class="input-field" placeholder="请输入要生成条形码的内容" value="123456789012">
+          </div>
 
-      <div class="form-group">
-        <label for="barcodeFormat">条形码格式：</label>
-        <select id="barcodeFormat">
-          <option value="CODE128">CODE128（默认，支持字母数字）</option>
-          <option value="CODE39">CODE39（支持字母数字）</option>
-          <option value="EAN13">EAN13（13位数字）</option>
-          <option value="EAN8">EAN8（8位数字）</option>
-          <option value="UPC">UPC（12位数字）</option>
-          <option value="ITF14">ITF14（14位数字）</option>
-          <option value="MSI">MSI（数字）</option>
-          <option value="pharmacode">Pharmacode（药品码）</option>
-          <option value="codabar">Codabar（图书馆码）</option>
-        </select>
-      </div>
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="barcodeFormat">
+                <span class="label-icon">🔧</span>
+                格式类型
+              </label>
+              <select id="barcodeFormat" class="select-field">
+                <option value="CODE128">CODE128（默认）</option>
+                <option value="CODE39">CODE39</option>
+                <option value="EAN13">EAN13（13位）</option>
+                <option value="EAN8">EAN8（8位）</option>
+                <option value="UPC">UPC（12位）</option>
+                <option value="ITF14">ITF14（14位）</option>
+                <option value="MSI">MSI</option>
+                <option value="pharmacode">Pharmacode</option>
+                <option value="codabar">Codabar</option>
+              </select>
+            </div>
 
-      <div class="form-group">
-        <label for="displayValue">
-          <input type="checkbox" id="displayValue" checked>
-          显示文本
-        </label>
-      </div>
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="displayValue" checked>
+                <span class="checkbox-text">显示文本</span>
+              </label>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <label for="barcodeWidth">线条宽度：</label>
-        <input type="range" id="barcodeWidth" min="1" max="5" value="2" step="0.5">
-        <span id="widthValue">2</span>
-      </div>
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="barcodeWidth">
+                <span class="label-icon">↔️</span>
+                线条宽度
+              </label>
+              <div class="slider-container">
+                <input type="range" id="barcodeWidth" min="1" max="5" value="2" step="0.5">
+                <span class="slider-value" id="widthValue">2</span>
+              </div>
+            </div>
 
-      <div class="form-group">
-        <label for="barcodeHeight">高度：</label>
-        <input type="range" id="barcodeHeight" min="30" max="150" value="80">
-        <span id="heightValue">80</span>
-      </div>
+            <div class="form-group flex-1">
+              <label for="barcodeHeight">
+                <span class="label-icon">↕️</span>
+                高度
+              </label>
+              <div class="slider-container">
+                <input type="range" id="barcodeHeight" min="30" max="150" value="80">
+                <span class="slider-value" id="heightValue">80</span>
+              </div>
+            </div>
+          </div>
 
-      <button id="generateBarcodeBtn" class="btn-primary">生成条形码</button>
+          <button id="generateBarcodeBtn" class="btn-generate">
+            <span class="btn-icon">✨</span>
+            生成条形码
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- 二维码面板 -->
     <div id="qrcode-panel" class="tab-panel">
-      <div class="form-group">
-        <label for="qrcodeText">输入内容：</label>
-        <textarea id="qrcodeText" placeholder="请输入要生成二维码的内容（支持文本、网址、名片等）" rows="4">https://www.example.com</textarea>
-      </div>
+      <div class="panel-content">
+        <!-- 输入区域 -->
+        <div class="input-section">
+          <div class="form-group">
+            <label for="qrcodeText">
+              <span class="label-icon">✏️</span>
+              输入内容
+            </label>
+            <textarea id="qrcodeText" class="textarea-field" placeholder="请输入要生成二维码的内容（文本、网址、名片等）" rows="4">https://www.example.com</textarea>
+          </div>
 
-      <div class="form-group">
-        <label for="qrcodeSize">二维码大小：</label>
-        <input type="range" id="qrcodeSize" min="128" max="512" value="256" step="32">
-        <span id="sizeValue">256</span> px
-      </div>
+          <!-- 快速模板 -->
+          <div class="form-group">
+            <label>
+              <span class="label-icon">⚡</span>
+              快速模板
+            </label>
+            <div class="template-grid">
+              <button class="template-btn" data-template="url">
+                <span class="template-icon">🔗</span>
+                <span>网址</span>
+              </button>
+              <button class="template-btn" data-template="wifi">
+                <span class="template-icon">📶</span>
+                <span>WiFi</span>
+              </button>
+              <button class="template-btn" data-template="vcard">
+                <span class="template-icon">👤</span>
+                <span>名片</span>
+              </button>
+              <button class="template-btn" data-template="sms">
+                <span class="template-icon">💬</span>
+                <span>短信</span>
+              </button>
+              <button class="template-btn" data-template="email">
+                <span class="template-icon">📧</span>
+                <span>邮件</span>
+              </button>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <label for="qrcodeLevel">容错级别：</label>
-        <select id="qrcodeLevel">
-          <option value="L">L - 低（7%）</option>
-          <option value="M" selected>M - 中（15%）</option>
-          <option value="Q">Q - 较高（25%）</option>
-          <option value="H">H - 高（30%）</option>
-        </select>
-      </div>
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="qrcodeSize">
+                <span class="label-icon">📏</span>
+                二维码大小
+              </label>
+              <div class="slider-container">
+                <input type="range" id="qrcodeSize" min="128" max="512" value="256" step="32">
+                <span class="slider-value"><span id="sizeValue">256</span> px</span>
+              </div>
+            </div>
 
-      <div class="form-group">
-        <label for="qrcodeFgColor">前景色：</label>
-        <input type="color" id="qrcodeFgColor" value="#000000">
-      </div>
+            <div class="form-group flex-1">
+              <label for="qrcodeLevel">
+                <span class="label-icon">🛡️</span>
+                容错级别
+              </label>
+              <select id="qrcodeLevel" class="select-field">
+                <option value="L">低（7%）</option>
+                <option value="M" selected>中（15%）</option>
+                <option value="Q">较高（25%）</option>
+                <option value="H">高（30%）</option>
+              </select>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <label for="qrcodeBgColor">背景色：</label>
-        <input type="color" id="qrcodeBgColor" value="#ffffff">
-      </div>
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="qrcodeFgColor">
+                <span class="label-icon">🎨</span>
+                前景色
+              </label>
+              <div class="color-picker">
+                <input type="color" id="qrcodeFgColor" value="#000000">
+                <span class="color-label">黑色</span>
+              </div>
+            </div>
 
-      <div class="form-group">
-        <label>快速模板：</label>
-        <div class="quick-templates">
-          <button class="template-btn" data-template="url">🔗 网址</button>
-          <button class="template-btn" data-template="wifi">📶 WiFi</button>
-          <button class="template-btn" data-template="vcard">👤 名片</button>
-          <button class="template-btn" data-template="sms">💬 短信</button>
-          <button class="template-btn" data-template="email">📧 邮件</button>
+            <div class="form-group flex-1">
+              <label for="qrcodeBgColor">
+                <span class="label-icon">🎨</span>
+                背景色
+              </label>
+              <div class="color-picker">
+                <input type="color" id="qrcodeBgColor" value="#ffffff">
+                <span class="color-label">白色</span>
+              </div>
+            </div>
+          </div>
+
+          <button id="generateQRCodeBtn" class="btn-generate">
+            <span class="btn-icon">✨</span>
+            生成二维码
+          </button>
         </div>
       </div>
-
-      <button id="generateQRCodeBtn" class="btn-primary">生成二维码</button>
     </div>
 
     <!-- 错误提示 -->
     <div id="errorMsg" class="error-msg"></div>
 
-    <!-- 显示区域 -->
-    <div id="codeContainer" class="code-container">
-      <div id="barcodeContainer" class="display-area">
-        <svg id="barcode"></svg>
+    <!-- 预览区域 -->
+    <div class="preview-section">
+      <div class="preview-header">
+        <span class="preview-title">预览结果</span>
       </div>
-      <div id="qrcodeContainer" class="display-area" style="display: none;">
-        <div id="qrcode"></div>
+      <div class="code-container">
+        <div id="barcodeContainer" class="display-area">
+          <svg id="barcode"></svg>
+        </div>
+        <div id="qrcodeContainer" class="display-area" style="display: none;">
+          <div id="qrcode"></div>
+        </div>
       </div>
     </div>
 
     <!-- 操作按钮 -->
-    <div class="button-group" id="actionButtons" style="display: none;">
-      <button id="downloadBtn" class="btn-secondary">下载 PNG</button>
-      <button id="downloadSvgBtn" class="btn-secondary">下载 SVG</button>
-      <button id="copyBtn" class="btn-secondary">复制图片</button>
+    <div class="action-buttons" id="actionButtons" style="display: none;">
+      <button id="downloadBtn" class="action-btn download-btn">
+        <span class="btn-icon">💾</span>
+        下载 PNG
+      </button>
+      <button id="downloadSvgBtn" class="action-btn download-btn">
+        <span class="btn-icon">📄</span>
+        下载 SVG
+      </button>
+      <button id="copyBtn" class="action-btn copy-btn">
+        <span class="btn-icon">📋</span>
+        复制图片
+      </button>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer">
+      <button id="resetBtn" class="btn-reset">
+        <span class="btn-icon">🔄</span>
+        重置所有设置
+      </button>
     </div>
   </div>
 
